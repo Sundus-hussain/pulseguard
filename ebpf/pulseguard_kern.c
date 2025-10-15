@@ -1,15 +1,9 @@
-#include <linux/bpf.h>
-#include <bpf/bpf_helpers.h>
+// Placeholder for eBPF kernel module
+// This will be implemented when running on Linux
 
-struct {
-    __uint(type, BPF_MAP_TYPE_PERF_EVENT_ARRAY);
-} events SEC(".maps");
+#include <stdio.h>
 
-// Trace write syscalls
-SEC("tracepoint/syscalls/sys_enter_write")
-int handle_write(struct trace_event_raw_sys_enter *ctx) {
-    bpf_printk("PulseGuard: write syscall detected!\n");
+int main() {
+    printf("PulseGuard kernel module placeholder\n");
     return 0;
 }
-
-char LICENSE[] SEC("license") = "GPL";
