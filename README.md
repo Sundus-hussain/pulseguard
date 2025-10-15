@@ -1,1 +1,0 @@
-# PulseGuard DevOps
