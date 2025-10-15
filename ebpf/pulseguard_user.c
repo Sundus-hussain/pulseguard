@@ -1,33 +1,23 @@
-#include <bpf/libbpf.h>
-#include <bpf/bpf.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 
 int main() {
-    printf("PulseGuard user-space app started...\n");
+    printf("PulseGuard User-Space App Started!\n");
 
-    // Load BPF object file
-    struct bpf_object *obj;
-    int err = bpf_object__open_file("pulseguard_kern.o", NULL, &obj);
-    if (err) {
-        fprintf(stderr, "Failed to open BPF object file\n");
-        return 1;
-    }
+    int event_count = 0;
+    srand(time(NULL));
 
-    // Load BPF program into kernel
-    if (bpf_object__load(obj)) {
-        fprintf(stderr, "Failed to load BPF program\n");
-        return 1;
-    }
-
-    printf("BPF program loaded successfully!\n");
-    printf("Monitoring syscalls... press Ctrl+C to exit.\n");
-
-    // For simplicity, just sleep to keep program running
     while (1) {
-        sleep(5);
+        // Simulate a pulse event randomly
+        int event = rand() % 2;  // 0 or 1
+        if (event) {
+            event_count++;
+            printf("Pulse event detected! Total events: %d\n", event_count);
+        }
+        sleep(2); // Check every 2 seconds
     }
 
-    bpf_object__close(obj);
     return 0;
 }
