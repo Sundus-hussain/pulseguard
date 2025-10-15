@@ -1,9 +1,6 @@
-// Placeholder for eBPF kernel module
-// This will be implemented when running on Linux
-
+// pulseguard_kern.c
 #include <stdio.h>
-
 int main() {
-    printf("PulseGuard kernel module placeholder\n");
+    printf("PulseGuard kernel placeholder\n");
     return 0;
 }
